@@ -1,25 +1,31 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import NotFoundPage from './pages/NotFoundPage';
-import HomePage from './pages/HomePage'
-import Navbar from './components/Layout/Navbar';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import NotFoundPage from "./pages/NotFoundPage";
+import HomePage from "./pages/HomePage";
 import "./App.css";
+import MasterPage from "./pages/layout/MasterPage";
+import KategoriesPage from "./pages/kategori";
 // other imports
 
 const App: React.FC = () => {
   return (
-      <Router>
-    <div className='App'>
-      <Navbar/>
-        <Routes>
-          {/* your other routes */}
-          <Route path='/home' Component={HomePage} />
-          <Route path='' Component={NotFoundPage} />
-        </Routes>
-    </div>
-      </Router>
+    <Router>
+      <Routes>
+        {/* your other routes */}
+        <Route path="/" element={<MasterPage />}>
+          <Route index element={<Navigate to="/home" />} />
+          <Route path="home" Component={HomePage} />
+          <Route path="category" Component={KategoriesPage} />
+        </Route>
+        <Route path="" Component={NotFoundPage} />
+      </Routes>
+    </Router>
   );
 };
 
 export default App;
-
