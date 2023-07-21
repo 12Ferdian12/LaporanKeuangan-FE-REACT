@@ -17,9 +17,9 @@ export default function KategoriesPage() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-300">
-                {kategoriesData.map((item) => (
-                  <CategoryCard />
-                ))}
+                {kategoriesData.map((item, idx) => {
+                  return <CategoryCard key={idx} kategoriData={item} />;
+                })}
               </tbody>
             </table>
           </div>
