@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CategoryCard from "../../components/Category/CategoryCard";
 import kategoriesData from "../../data/dummy/KategoriesData";
 
@@ -5,6 +6,7 @@ export default function KategoriesPage() {
   return (
     <div className="container mx-auto">
       <div className="flex flex-col">
+        <Link to="/category/create">Create Category</Link>
         <div className="w-full">
           <div className="p-8 border-b border-gray-200 shadow">
             <table className="divide-y divide-gray-300 w-full" id="dataTable">

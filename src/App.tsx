@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage";
 import "./App.css";
 import MasterPage from "./pages/layout/MasterPage";
 import KategoriesPage from "./pages/kategori";
+import CreateKategori from "./pages/kategori/create";
 // other imports
 
 const App: React.FC = () => {
@@ -20,7 +21,10 @@ const App: React.FC = () => {
         <Route path="/" element={<MasterPage />}>
           <Route index element={<Navigate to="/home" />} />
           <Route path="home" Component={HomePage} />
-          <Route path="category" Component={KategoriesPage} />
+          <Route path="category/">
+            <Route index Component={KategoriesPage} />
+            <Route path="create" Component={CreateKategori} />
+          </Route>
         </Route>
         <Route path="" Component={NotFoundPage} />
       </Routes>
