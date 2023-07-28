@@ -23,7 +23,7 @@ function CreateKategori() {
         <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-12">
           <div className="sm:col-span-4">
             <label className="block text-sm font-medium leading-6 text-gray-900">
-              Category Name
+              Category Name Hallo
             </label>
             <div className="mt-2">
               <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
