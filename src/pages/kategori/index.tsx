@@ -1,8 +1,25 @@
 import { Link } from "react-router-dom";
 import CategoryCard from "../../components/Category/CategoryCard";
-import kategoriesData from "../../data/dummy/KategoriesData";
+import { useEffect, useState } from "react";
+import { KategoriData } from "../../types/api/kategori";
 
 export default function KategoriesPage() {
+  const [categoriesData, setCategoriesData] = useState<KategoriData[]>([]);
+
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const response = await fetch("http://localhost:3000/categories"); // Replace with your API URL
+        const data = await response.json();
+        setCategoriesData(data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    }
+
+    fetchCategories();
+  }, []);
+
   return (
     <div className="container mx-auto">
       <div className="flex flex-col">
@@ -19,7 +36,7 @@ export default function KategoriesPage() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-300">
-                {kategoriesData.map((item, idx) => {
+                {categoriesData.map((item, idx) => {
                   return <CategoryCard key={idx} kategoriData={item} />;
                 })}
               </tbody>
