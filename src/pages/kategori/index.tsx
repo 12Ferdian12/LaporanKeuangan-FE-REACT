@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import CategoryCard from "../../components/Category/CategoryCard";
 import { useEffect, useState } from "react";
 import { KategoriData } from "../../types/api/kategori";
+import Button from "../../components/Helpers/Button";
 
 export default function KategoriesPage() {
   const [categoriesData, setCategoriesData] = useState<KategoriData[]>([]);
@@ -23,7 +24,12 @@ export default function KategoriesPage() {
   return (
     <div className="container mx-auto">
       <div className="flex flex-col">
-        <Link to="/category/create">Create Category</Link>
+        <Button
+          buttonType="primary"
+          className="w-[150px] justify-center mt-5 ml-5"
+        >
+          <Link to="/category/create">Create Category</Link>
+        </Button>
         <div className="w-full">
           <div className="p-8 border-b border-gray-200 shadow">
             <table className="divide-y divide-gray-300 w-full" id="dataTable">

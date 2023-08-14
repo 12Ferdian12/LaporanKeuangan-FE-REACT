@@ -1,24 +1,15 @@
 import { ToastContainer, toast } from "react-toastify";
 import { useForm, SubmitHandler } from "react-hook-form";
 import "react-toastify/dist/ReactToastify.css";
+import { createCategory } from "../../api/category";
+import { useNavigate } from "react-router-dom";
 
 type Inputs = {
   CategoryName: string;
 };
 
 function CreateKategori() {
-  const notify = () =>
-    toast.success("Data kategori berhasil ditambahkan!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,8 +17,35 @@ function CreateKategori() {
   } = useForm<Inputs>();
 
   const onSubmitCategory: SubmitHandler<Inputs> = (data) => {
-    notify;
-    console.log(data);
+    createCategory({ kategoriName: data.CategoryName })
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          toast.success("Data kategori berhasil ditambahkan!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+
+          navigate("/category/");
+        }
+      })
+      .catch(() => {
+        toast.error("Data kategori gagal ditambahkan!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      });
   };
 
   return (
